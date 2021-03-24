@@ -1,0 +1,9 @@
+.nav-link.active,
+.nav-item.show .nav-link {
+    background-color: white !important;
+    border: 3px solid #D98DEE !important;
+    /* color: black !important; */
+    border-radius: 30px !important;
+    color: grey !important;
+    /* font-weight: bold !important; */
+}
