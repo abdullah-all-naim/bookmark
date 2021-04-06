@@ -1,15 +1,20 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import 'antd/dist/antd.css';
+import { Spin, Space } from 'antd';
 import Bookmark from '../Bookmark/Bookmark';
 import logo from '../../logo.png'
+import noimg from '../../noprofile.png'
 
 const HomePage = () => {
+    document.title = 'QIKDAW | Home Page'
     const getUser = localStorage.getItem('loggedIn')
     const [user, setUser] = useState([])
     const [loading, setLoading] = useState(false)
+    const history = useHistory()
     useEffect(() => {
-        axios.get('http://localhost:5000/userinfo?id=' + getUser)
+        axios.get('https://intense-mesa-02860.herokuapp.com/userinfo?id=' + getUser)
             .then((response) => response.data)
             .then(data => {
                 if (data) {
@@ -19,33 +24,69 @@ const HomePage = () => {
 
             })
     }, [])
-    let email
-    { user.map(x => email = x.email) }
+    let profileImage;
+    let userEmail
+    let userName
+    let photoURL
+    user.map(x => {
+        profileImage = x.photo
+        photoURL = x.photoURL
+        userEmail = x.email
+        userName = x.name
+    })
     return (
         <>
             {loading ?
                 <div>
-                    <div className="d-flex flex-wrap justify-content-between">
-                        <div className=''>
-                             <img src={logo} alt="" />
-                        </div>
-                        <div className='text-center'>
-                            <div>
-                                <img style={{ width: '70px', borderRadius: '50px' }} src={user.map(x => x.photoURL || `data:/png;base64,${x.photoURL}`)} alt="" />
+                    <div style={{ minHeight: '80vh' }}>
+                        <div className="d-flex flex-wrap justify-content-between">
+                            <Link to="/home" className='mt-3 px-4 text-center justify-content-center' style={{ height: '100px' }}>
+                                <img className='img-responsive' style={{ width: '150px' }} src={logo} alt="" />
+                                <h5 style={{ color: '#ABABAB' }}>Quick door to the world</h5>
+                            </Link>
+                            <div className='text-center p-3' style={{ cursor: 'pointer' }} onClick={() => history.push('/userprofile')}>
+                                {photoURL ?
+                                    <div>
+                                        <img className='img-fluid' style={{ width: '80px', borderRadius: '50%', height: '80px' }} src={photoURL} alt="" />
+                                    </div>
+                                    :
+                                    <div className=''>
+
+                                        {profileImage ?
+                                            <img className='img-' style={{ width: '80px', borderRadius: '50%', height: '80px' }} src={`data:/png;base64,${profileImage.image}`} alt="" /> :
+                                            <img className='img-' style={{ width: '80px' }} src={noimg} alt="" />
+                                        }
+                                    </div>
+                                }
+                                <h5 style={{ color: '#ABABAB' }}>{userName}</h5>
                             </div>
-                            <p>{user.map(x => x.name || x.fname + ' ' + x.lname)}</p>
                         </div>
+                        <div className='d-flex flex-wrap justify-content-between' style={{}}>
+                            <div className=' col-12'>
+                                <Bookmark email={userEmail} />
+                            </div>
+                        </div>
+
                     </div>
-                    <div className='d-flex flex-wrap justify-content-between mt-3' style={{}}>
-                        <div className='mt-5 col-12'>
-                            <Bookmark email={email} />
+                    <div className='' style={{ position: '', bottom: '0px', marginTop: '', width: '100%', height: '' }}>
+                        <div className='d-flex flex-wrap justify-content-center text-center' style={{ color: '#ABABAB', }}>
+                            <p className='col-3 col-lg-2'>Copyright QikDaw.com 2021</p>
+                            <p className='col-3 col-lg-2' style={{ cursor: 'pointer' }} onClick={() => history.push('/contact')}>Contact</p>
+                            <p className='col-3 col-lg-2'>Terms of Use/Service</p>
+                            <p className='col-3 col-lg-2'>Privacy Policy</p>
+
                         </div>
                     </div>
                 </div>
-                : <div className='text-center mt-5 p-5'>
-                    <div class="spinner-border text-dark" role="status">
-                        {/* <span class="sr-only">Loading...</span> */}
-                    </div>
+                : <div style={{
+                    position: 'fixed',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)'
+                }}>
+                    <Space size="middle">
+                        <Spin size="large" />
+                    </Space>
                 </div>}
         </>
     );

@@ -2,8 +2,28 @@
 .nav-item.show .nav-link {
     background-color: white !important;
     border: 3px solid #D98DEE !important;
-    /* color: black !important; */
     border-radius: 30px !important;
     color: grey !important;
-    /* font-weight: bold !important; */
+}
+.ant-modal-footer {
+    text-align: center !important;
+}
+.ant-modal-footer .ant-btn + .ant-btn {
+    margin: 0 20px !important;
+    border-radius : 30px !important;
+    padding : 0px 25px !important;
+}
+.ant-btn{
+    border-radius : 30px !important;
+    background-color : #697374;
+   
+}
+
+.ant-modal-content{
+    background-color : #495355;
+    border-radius: 20px !important;
+    color: #697374 !important;
+}
+.ant-modal-mask {
+    background : none !important;
 }

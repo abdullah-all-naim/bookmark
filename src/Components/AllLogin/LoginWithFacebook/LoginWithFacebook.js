@@ -1,44 +1,46 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import firebase from 'firebase/app'
 import "firebase/auth";
 import "firebase/firestore";
 import firebaseconfig from '../firebaseconfig'
 import facebook from '../../../fb.png';
 import axios from 'axios';
+import { useHistory, useLocation } from 'react-router';
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseconfig);
 }
 
-
-
 const LoginWithFacebook = () => {
+    const location = useLocation()
+    const history = useHistory()
+    const { from } = location.state || { from: { pathname: `/home` } };
     const facebookLogin = () => {
+
         const providerFb = new firebase.auth.FacebookAuthProvider();
         firebase.auth().signInWithPopup(providerFb).then(function (result) {
+
+            let randomToken;
+            randomToken = uuidv4()
             var token = result.credential.accessToken;
             const { displayName, photoURL, emailVerified, b } = result.user;
-            const signedInWithFb = { name: displayName, email: emailVerified, photoURL: photoURL, id: b.a }
-            axios.post('http://localhost:5000/users', signedInWithFb)
+            const signedInWithFb = { name: displayName, email: emailVerified, photoURL: photoURL, id: randomToken, type: 'gf' }
+            axios.post('https://intense-mesa-02860.herokuapp.com/users', signedInWithFb)
                 .then(response => console.log(response))
 
-            localStorage.setItem('loggedIn', b.a)
-            // setTimeout(function () { window.location.reload() }, 2000);
-            console.log(result.user);
-            // history.replace(from)
+            localStorage.setItem('loggedIn', signedInWithFb.id)
+            window.location.reload()
+            history.replace(from)
 
         }).catch(function (error) {
             var errorCode = error.code;
             var errorMessage = error.message;
-            console.log(errorCode, errorMessage)
-            var email = error.email;
-            var credential = error.credential;
-            // ...
         });
     }
 
     return (
-        <div className='d-flex justify-content-center my-3'>
-            <button className='d-flex flex-wrap' style={{ border: '2px solid #A0A1A1', width: '350px', height: '50px', borderRadius: '30px', display: 'flex', backgroundColor: 'white' }} onClick={facebookLogin}>
+        <div className='my-3 col-12 col-sm-8 col-lg-8 mx-auto'>
+            <button className='d-flex flex-wrap col-12' style={{ border: '2px solid #A0A1A1', borderRadius: '30px', backgroundColor: 'white' }} onClick={facebookLogin}>
                 <div className='col-2'>
                     <img style={{ width: '30px', height: '30px' }} className='mt-2' src={facebook} alt="" />
                 </div>

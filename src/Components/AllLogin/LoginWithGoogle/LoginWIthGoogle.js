@@ -5,38 +5,45 @@ import "firebase/firestore";
 import firebaseconfig from '../firebaseconfig'
 import google from '../../../Google.png'
 import axios from 'axios';
-import { useHistory } from 'react-router';
+import { v4 as uuidv4 } from 'uuid';
+import { useHistory, useLocation } from 'react-router';
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseconfig);
 }
 
 const LoginWIthGoogle = () => {
     const history = useHistory()
+    const location = useLocation()
+    const { from } = location.state || { from: { pathname: `/home` } };
     const googleLogin = () => {
+
         const provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider).then(function (result) {
+            let randomToken;
+            randomToken = uuidv4()
             var token = result.credential.accessToken;
             const { displayName, photoURL, email, emailVerified, b } = result.user;
-            console.log(result.user)
-            const signedInUser = { name: displayName, email: email, photoURL: photoURL, id: b.a }
-            
-            axios.post('http://localhost:5000/users', signedInUser)
-                .then(response => console.log(response))
-history.push('/home')
-            localStorage.setItem('loggedIn', b.a)
-            // setTimeout(function () { window.location.reload() }, 2000);
+            const signedInUser = { name: displayName, email: email, photoURL: photoURL, id: randomToken, type: 'gf' }
 
+            axios.post('https://intense-mesa-02860.herokuapp.com/users', signedInUser)
+                .then(response => {
+                    if (response) {
+                        history.replace(from)
+                    }
+                })
+            localStorage.setItem('loggedIn', signedInUser.id)  
         }).catch(function (error) {
             console.log(error)
         });
     }
+
     return (
-        <div className='d-flex justify-content-center my-3'>
-            <button className='d-flex flex-wrap' style={{ border:'2px solid #A0A1A1', width: '350px', height: '50px', borderRadius: '30px', display: 'flex', backgroundColor: 'white' }} onClick={googleLogin}>
-                <div className= 'col-2'>
-                    <img style={{ width: '30px', height: '30px' }} className='mt-2' src={google} alt="" />
+        <div className='col-12 col-sm-8 col-lg-8 mx-auto'>
+            <button className='d-flex flex-wrap col-12' style={{ border: '2px solid #A0A1A1', borderRadius: '30px', backgroundColor: 'white' }} onClick={googleLogin}>
+                <div className='col-2'>
+                    <img style={{ width: '30px', height: '30px', color: 'lightgrey' }} className='mt-2' src={google} alt="" />
                 </div>
-                <p className='pt-2' style={{color: '#ABABAB'}}>Login with Google</p>
+                <p className='pt-2' style={{ color: '#ABABAB' }}>Login with Google</p>
             </button>
         </div>
     );

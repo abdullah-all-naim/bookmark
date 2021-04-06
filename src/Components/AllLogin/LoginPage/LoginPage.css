@@ -1,3 +1,15 @@
 #fb:focus {
     border : none;
   }
+  @media only screen and (min-width: 576px) {
+    #top {
+      margin-top : -95px;
+    }
+
+  } 
+  @media only screen and (min-width: 768px) {
+    #footer {
+      margin-top : -220px;
+    }
+
+  } 
