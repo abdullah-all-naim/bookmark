@@ -9,6 +9,8 @@ import Contact from './Components/Contact/Contact';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import UserProfile from './Components/UserProfile/UserProfile';
 import ForgetPass from './Components/ForgetPass/ForgetPass';
+import Privacy from './Components/Privacy/Privacy';
+import Terms from './Components/Terms/Terms';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
     <Route exact path ='/login' component ={LoginPage} />
     <Route exact path ='/signup' component ={LoginWithEmail} />
     <Route exact path ='/contact' component ={Contact} />
+    <Route exact path ='/privacy' component ={Privacy} />
+    <Route exact path ='/terms' component ={Terms} />
     <Route exact path ='/forget' component ={ForgetPass} />
     <PrivateRoute exact path ='/userprofile' component ={UserProfile} />
     <Redirect from = '/' to = '/home' />

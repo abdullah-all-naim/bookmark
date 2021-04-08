@@ -7,9 +7,7 @@ import "firebase/firestore";
 import firebaseconfig from '../firebaseconfig';
 import LoginWIthGoogle from '../LoginWithGoogle/LoginWIthGoogle';
 import LoginWithFacebook from '../LoginWithFacebook/LoginWithFacebook';
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseconfig);
-}
+
 
 const Login = () => {
     const history = useHistory()
@@ -102,7 +100,7 @@ const Login = () => {
                             </div>
                         </div> : null}
                     </form>
-                    <LoginWIthGoogle/>
+                    <LoginWIthGoogle />
                     <LoginWithFacebook />
                 </div>
             </div>

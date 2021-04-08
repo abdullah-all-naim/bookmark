@@ -10,6 +10,7 @@ import Footer from '../../Footer/Footer';
 import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
+    document.title = 'QikDaw | Login'
     const history = useHistory()
     return (
         <>
@@ -25,6 +26,7 @@ const LoginPage = () => {
             <div className='d-flex justify-content-center flex-wrap container-lg' id='top'>
                 <div className="col-12 col-md-8 col-lg-5 mb-5" >
                     <Login />
+                    {/* <LoginWIthGoogle/> */}
                 </div>
                 <div className='mt-5 col-1 d-none d-lg-block' style={{ borderRight: '2px solid lightgrey' }}></div>
                 <div className="col-12 col-md-8 col-lg-5 mx-auto text-center mb-5 m-lg-0">
@@ -34,9 +36,9 @@ const LoginPage = () => {
                     {/* </div> */}
                 </div>
             </div>
-            <div id='footer'>
+            {/* <div id='footer'> */}
                 <Footer />
-            </div>
+            {/* </div> */}
 
         </>
     );

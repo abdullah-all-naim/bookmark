@@ -9,7 +9,7 @@ import back from '../../back.png'
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 const UserProfile = () => {
-    document.title = 'QIKDAW | UserProfile Page'
+    document.title = 'QikDaw | UserProfile'
     const [user, setUser] = useState([])
     const getUser = localStorage.getItem('loggedIn')
     const [loading, setLoading] = useState(false)

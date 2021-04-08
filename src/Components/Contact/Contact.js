@@ -6,7 +6,7 @@ import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 
 const Contact = () => {
-    document.title = 'QIKDAW | Contact Page'
+    document.title = 'QikDaw | Contact'
     const [status, setStatus] = useState(false)
     const history = useHistory()
     return (

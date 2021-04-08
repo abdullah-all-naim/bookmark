@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import firebase from 'firebase/app'
 import "firebase/auth";
@@ -15,6 +15,15 @@ const LoginWithFacebook = () => {
     const location = useLocation()
     const history = useHistory()
     const { from } = location.state || { from: { pathname: `/home` } };
+    const [user, setUser] = useState([])
+    useEffect(() => {
+
+        fetch('https://intense-mesa-02860.herokuapp.com/data')
+            .then(res => res.json())
+            .then(data => {
+                setUser(data)
+            })
+    }, [])
     const facebookLogin = () => {
 
         const providerFb = new firebase.auth.FacebookAuthProvider();
@@ -23,14 +32,22 @@ const LoginWithFacebook = () => {
             let randomToken;
             randomToken = uuidv4()
             var token = result.credential.accessToken;
-            const { displayName, photoURL, emailVerified, b } = result.user;
-            const signedInWithFb = { name: displayName, email: emailVerified, photoURL: photoURL, id: randomToken, type: 'gf' }
-            axios.post('https://intense-mesa-02860.herokuapp.com/users', signedInWithFb)
-                .then(response => console.log(response))
-
-            localStorage.setItem('loggedIn', signedInWithFb.id)
-            window.location.reload()
-            history.replace(from)
+            const { displayName, photoURL, email, b } = result.user;
+            const signedInWithFb = { name: displayName, email: email, photoURL: photoURL, id: randomToken, type: 'gf' }
+            user.map(x => {
+            if (x.email == signedInWithFb.email || x.name == signedInWithFb.name) {
+                history.replace(from)
+                localStorage.setItem('loggedIn', x.id)
+            } else {
+                axios.post('https://intense-mesa-02860.herokuapp.com/users', signedInWithFb)
+                    .then(response => {
+                        if (response) {
+                            history.replace(from)
+                            localStorage.setItem('loggedIn', signedInWithFb.id)
+                        }
+                    })
+            }
+        })
 
         }).catch(function (error) {
             var errorCode = error.code;

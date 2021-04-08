@@ -16,7 +16,7 @@ if (!firebase.apps.length) {
     firebase.initializeApp(firebaseconfig);
 }
 const LoginWithEmail = () => {
-    document.title = 'QIKDAW | Signup Page'
+    document.title = 'QikDaw | Signup'
     const history = useHistory()
     const location = useLocation()
     const { from } = location.state || { from: { pathname: `/home` } };
@@ -238,19 +238,19 @@ const LoginWithEmail = () => {
                                         <div className='col-md-12 col-10'>
                                             <div className="form-group col-md-12" >
                                                 <h4 className='text-center mx-5 text-muted  mb-4'>SIGN UP - Name</h4>
-                                                <input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.fname} type="text" className="form-control" name='fname' id='fname' placeholder="First Name" />
+                                                <input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.fname} type="text" className="form-control" name='fname' id='fname' placeholder="Enter Your Name" />
                                                 {formik.touched.fname && formik.errors.fname ? (<div className="text-danger text-left">{formik.errors.fname}</div>) : null}
                                             </div>
                                             <div className="form-group col-md-12 my-4 text-center">
                                                 {formik.errors.fname || !formik.values.fname ?
                                                     <button type="button" className="form-control btn px-3 mt-1 py-2 mb-5" style={{ borderRadius: '40px', backgroundColor: '#DFCCF4', border: '2px solid #A0A1A1' }}><h6 className="text-muted">NEXT</h6></button> :
-                                                    <button type="button" className="form-control btn px-3 mt-1 py-2 mb-5" style={{ borderRadius: '40px', backgroundColor: '#DFCCF4', border: '2px solid #A0A1A1' }} onClick={(e) => setStatus({ fname: false, lname: true })}><h6 className="text-muted">NEXT</h6></button>}
+                                                    <button type="button" className="form-control btn px-3 mt-1 py-2 mb-5" style={{ borderRadius: '40px', backgroundColor: '#DFCCF4', border: '2px solid #A0A1A1' }} onClick={(e) => setStatus({ fname: false, photoURL: true })}><h6 className="text-muted">NEXT</h6></button>}
                                             </div>
                                         </div>
 
                                     </div> : null}
 
-                                {status.lname ?
+                                {/* {status.lname ?
                                     <div className='d-flex flex-wrap justify-content-center'>
                                         <div className='col-lg-12 col-12' style={{ cursor: 'pointer' }} onClick={() => {
                                             setStatus({ lname: false })
@@ -271,7 +271,7 @@ const LoginWithEmail = () => {
                                                     <button type="button" className="form-control btn px-3 mt-1 py-2 mb-5" style={{ borderRadius: '40px', backgroundColor: '#DFCCF4', border: '2px solid #A0A1A1' }} onClick={(e) => setStatus({ lname: false, photoURL: true })}><h6 className="text-muted">NEXT</h6></button>}
                                             </div>
                                         </div>
-                                    </div> : null}
+                                    </div> : null} */}
 
                                 {status.photoURL ?
                                     <div className='d-flex flex-wrap justify-content-center'>

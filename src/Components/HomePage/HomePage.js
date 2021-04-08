@@ -8,7 +8,7 @@ import logo from '../../logo.png'
 import noimg from '../../noprofile.png'
 
 const HomePage = () => {
-    document.title = 'QIKDAW | Home Page'
+    document.title = 'QikDaw | Home'
     const getUser = localStorage.getItem('loggedIn')
     const [user, setUser] = useState([])
     const [loading, setLoading] = useState(false)
@@ -74,7 +74,6 @@ const HomePage = () => {
                             <p className='col-3 col-lg-2' style={{ cursor: 'pointer' }} onClick={() => history.push('/contact')}>Contact</p>
                             <p className='col-3 col-lg-2'>Terms of Use/Service</p>
                             <p className='col-3 col-lg-2'>Privacy Policy</p>
-
                         </div>
                     </div>
                 </div>
