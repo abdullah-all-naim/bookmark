@@ -4,7 +4,7 @@ import frame from '../../frame.png';
 import Footer from '../Footer/Footer';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-
+import back from '../../back.png'
 const Terms = () => {
     document.title = 'QikDaw | Terms&Services'
     const [status, setStatus] = useState(false)
@@ -20,7 +20,17 @@ const Terms = () => {
                     <img className='img-responsive' src={frame} alt="" />
                 </div>
             </div>
-            <div className='container' style={{ minHeight: '70vh', color: 'grey' }}>
+            <div className='d-flex'>
+                <div className='col-3' style={{ cursor: 'pointer' }} onClick={() => {
+                                        history.push('/home')
+                                        
+
+                                    }}>
+                                        <img style={{ width: '80px' }} src={back} alt="" />
+                </div>
+
+            </div>
+            <div className='container mb-5' style={{ minHeight: '70vh', color: 'grey' }}>
                 <h4>QIKDAW TERMS OF SERVICE AGREEMENT</h4>
                 <div>
                     <h5 style={{ fontStyle: 'italic' }}>

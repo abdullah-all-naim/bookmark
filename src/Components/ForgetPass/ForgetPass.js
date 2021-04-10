@@ -37,8 +37,8 @@ const ForgetPass = () => {
     return (
         <>
             <div className="d-flex flex-wrap justify-content-between">
-                <Link to="/home" className='mt-3 p-4 text-center justify-content-center'>
-                    <img className='img-responsive' style={{ width: '200px', height: '' }} src={logo} alt="" />
+                <Link to="/home" className='mt-3 px-4 text-center justify-content-center' style={{ height: '100px' }}>
+                    <img className='img-responsive' style={{ width: '150px' }} src={logo} alt="" />
                     <h5 style={{ color: '#ABABAB' }}>Quick door to the world</h5>
                 </Link>
                 <div className='d-none d-sm-flex'>

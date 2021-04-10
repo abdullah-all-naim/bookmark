@@ -127,9 +127,6 @@ const LoginWithEmail = () => {
             if (!values.fname) {
                 errors.fname = 'Required'
             }
-            if (!values.lname) {
-                errors.lname = 'Required'
-            }
 
             return errors
 
@@ -168,7 +165,7 @@ const LoginWithEmail = () => {
                             <img className='img-responsive' src={frame} alt="" />
                         </div>
                     </div>
-                    <div style={{ padding: ' 0', minHeight : '50vh' }} id='signup'>
+                    <div style={{ padding: ' 0', minHeight : '80vh' }} id='signup'>
                         <div className='d-flex flex-wrap justify-content-center' style={{ backgroundColor: '', width: '' }}>
                             <form className='d-flex flex-wrap justify-content-center' onSubmit={formik.handleSubmit}>
                                 {status.email ?
@@ -181,7 +178,7 @@ const LoginWithEmail = () => {
                                             <h4 className='text-center mx-5 text-muted mb-4'>SIGN UP - Enter your email</h4>
                                             <input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email} type="email" className="form-control" name='email' id='email' placeholder="Email" />
                                             {formik.touched.email && formik.errors.email ? (<div className="text-danger text-left">{formik.errors.email}</div>) : null}
-                                            <p className='my-2' style={{ fontStyle: 'italic', fontSize: '12px' }}>By clicking the NEXT button, you are agreeing to <span style={{ color: '#B6E8DA', textDecoration: 'underline' }}>Terms and Conditions</span> governing QikDaw</p>
+                                            <p className='my-2' style={{ fontStyle: 'italic', fontSize: '12px' }}>By clicking the NEXT button, you are agreeing to <span style={{ color: '#B6E8DA', textDecoration: 'underline' }} onClick={() => history.push('/terms')}>Terms and Conditions</span> governing QikDaw</p>
                                         </div>
                                         <div className="form-group col-8 col-sm-8 col-lg-8 ml-2 px-3 my-4 text-center">
                                             {formik.errors.email || !formik.values.email ?
@@ -285,7 +282,7 @@ const LoginWithEmail = () => {
                                         <div className='col-md-12 col-10'>
                                             <div className="form-group col-md-12" >
                                                 <h5 className='text-center mx-5 text-muted'>Upload a profile picture</h5>
-                                                <div className='text-center'>
+                                                <div className='text-center' onClick={() => setHandleInput(true)} style={{cursor : 'pointer'}}>
                                                     <img style={{ width: '150px' }} src={profile} alt="" />
                                                 </div>
                                                 {handleInput ? <input onChange={handleFileChange} type="file" className="btn form-control border" name='file' id='file' placeholder="file" /> : null}

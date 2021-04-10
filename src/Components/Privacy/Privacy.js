@@ -4,7 +4,7 @@ import frame from '../../frame.png';
 import Footer from '../Footer/Footer';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-
+import back from '../../back.png'
 const Privacy = () => {
     document.title = 'QikDaw | Privacy Polices'
     const [status, setStatus] = useState(false)
@@ -19,6 +19,16 @@ const Privacy = () => {
                 <div className='d-none d-sm-flex'>
                     <img className='img-responsive' src={frame} alt="" />
                 </div>
+            </div>
+            <div className='d-flex'>
+                <div className='col-3' style={{ cursor: 'pointer' }} onClick={() => {
+                                        history.push('/home')
+                                        
+
+                                    }}>
+                                        <img style={{ width: '80px' }} src={back} alt="" />
+                </div>
+
             </div>
             <div className='container' style={{ color:'grey'}}>
                 <h4 style={{ color: '#ABABAB' }}>QIKDAW PRIVACY POLICY AGREEMENT</h4>

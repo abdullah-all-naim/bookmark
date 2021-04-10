@@ -11,6 +11,7 @@ const Contact = () => {
     const history = useHistory()
     return (
         <>
+        <div style={{minHeight : '95vh'}}>
             <div className="d-flex flex-wrap justify-content-between">
                 <Link to="/home" className='mt-3 px-4 text-center' style={{ height: '100px' }}>
                     <img className='img-responsive' style={{ width: '150px' }} src={logo} alt="" />
@@ -41,6 +42,7 @@ const Contact = () => {
                     </div>
                 </div>}
             {/* </div> */}
+            </div>
             <Footer />
         </>
     );

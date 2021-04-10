@@ -99,7 +99,8 @@ const UserProfile = () => {
                     setManageError('Account Updated')
                     setTimeout(function () {
                         setManageError('');
-                        window.location.reload()
+                        // window.location.reload()
+                        setStatus({ edit: false })
                     }, 3000);
 
                 }
@@ -268,15 +269,7 @@ const UserProfile = () => {
 
                     </div>}
             </div>
-            <div className='' style={{ position: 'relative', bottom: '0px', marginTop: '', width: '100%', height: '' }}>
-                <div className='d-flex flex-wrap justify-content-center text-center' style={{ color: '#ABABAB', }}>
-                    <p className='col-3 col-md-2'>Copyright QikDaw.com 2021</p>
-                    <p className='col-3 col-md-2' style={{ cursor: 'pointer' }} onClick={() => history.push('/contact')}>Contact</p>
-                    <p className='col-3 col-md-2'>Terms of Use/Service</p>
-                    <p className='col-3 col-md-2'>Privacy Policy</p>
-
-                </div>
-            </div>
+            <Footer/>
 
         </div>
     );

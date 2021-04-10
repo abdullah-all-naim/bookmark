@@ -6,6 +6,7 @@ import { Spin, Space } from 'antd';
 import Bookmark from '../Bookmark/Bookmark';
 import logo from '../../logo.png'
 import noimg from '../../noprofile.png'
+import Footer from '../Footer/Footer';
 
 const HomePage = () => {
     document.title = 'QikDaw | Home'
@@ -68,14 +69,7 @@ const HomePage = () => {
                         </div>
 
                     </div>
-                    <div className='' style={{ position: '', bottom: '0px', marginTop: '', width: '100%', height: '' }}>
-                        <div className='d-flex flex-wrap justify-content-center text-center' style={{ color: '#ABABAB', }}>
-                            <p className='col-3 col-lg-2'>Copyright QikDaw.com 2021</p>
-                            <p className='col-3 col-lg-2' style={{ cursor: 'pointer' }} onClick={() => history.push('/contact')}>Contact</p>
-                            <p className='col-3 col-lg-2'>Terms of Use/Service</p>
-                            <p className='col-3 col-lg-2'>Privacy Policy</p>
-                        </div>
-                    </div>
+                    <Footer />
                 </div>
                 : <div style={{
                     position: 'fixed',
